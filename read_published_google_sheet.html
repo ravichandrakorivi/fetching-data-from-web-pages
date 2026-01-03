@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Google Sheet Data View</title>
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Google Sheet Data</h2>
+
+<table id="dataTable"></table>
+
+<script>
+  const url =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vScat5grOFnwqnQAqLV9iRuPAArTkXKYyzBrFXiQhEU1nUtdNHBJc-GyIr9lHGEDYdTEilOa1h6czaN/pub?gid=0&single=true&output=csv";
+
+  fetch(url)
+    .then(response => response.text())
+    .then(csv => {
+      const rows = csv.trim().split("\n").map(r => r.split(","));
+      const table = document.getElementById("dataTable");
+
+      rows.forEach((row, index) => {
+        const tr = document.createElement("tr");
+
+        row.forEach(cell => {
+          const td = document.createElement(index === 0 ? "th" : "td");
+          td.textContent = cell;
+          tr.appendChild(td);
+        });
+
+        table.appendChild(tr);
+      });
+    });
+</script>
+
+</body>
+</html>
