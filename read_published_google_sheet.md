@@ -1,5 +1,4 @@
-# Fetching Real Time Data from Web Pages
-## If the sheet can be public read-only
+# Fetching Data From A Published Google Sheet
 
 You can ask the owner to Publish the sheet as CSV:
 
