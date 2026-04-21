@@ -16,5 +16,4 @@ data = sheet.get_all_records(
     head=2   # 👈 tell gspread header row = Row 2
 )
 
-for row in data:
-    print(row)
+print(data[0])
